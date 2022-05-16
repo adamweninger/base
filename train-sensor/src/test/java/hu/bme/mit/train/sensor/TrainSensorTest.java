@@ -41,6 +41,7 @@ public class TrainSensorTest {
     @Test
     public void Test_Alarm_BadToReference() {
         when(mockUser.getAlarmFlag()).thenReturn(true);
+        when(mockController.getReferenceSpeed()).thenReturn(50);
         sensor.overrideSpeedLimit(10);
         verify(mockUser, times(1)).setAlarmState(true);
     }
@@ -49,6 +50,6 @@ public class TrainSensorTest {
     public void Test_Alarm_NoAlarm() {
         when(mockUser.getAlarmFlag()).thenReturn(false);
         sensor.overrideSpeedLimit(40);
-        verify(mockUser, times(1)).setAlarmState(false);
+        verify(mockUser, times(2)).setAlarmState(false);
     }
 }
